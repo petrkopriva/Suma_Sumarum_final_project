@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Suma Sumárum</string>
+    <string name="total_balance">Celkové jmění</string>
+    <string name="income">Příjmy</string>
+    <string name="expenses">Výdaje</string>
+    <string name="investments">Investice</string>
+    <string name="dashboard">Přehled</string>
+    <string name="history">Historie</string>
+    <string name="add_new">Přidat záznam</string>
+    <string name="title_hint">Název (např. Oběd)</string>
+    <string name="amount_hint">Částka</string>
+    <string name="category_hint">Kategorie</string>
+    <string name="save">Uložit</string>
+    <string name="take_photo">Vyfotit účtenku</string>
+</resources>

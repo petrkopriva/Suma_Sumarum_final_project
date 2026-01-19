@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginBottom="8dp"
+    android:gravity="center_vertical"
+    android:weightSum="10">
+
+    <EditText
+        android:id="@+id/etRowName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="6"
+        android:hint="Název"
+        android:inputType="textCapSentences"
+        android:textSize="14sp"/>
+
+    <EditText
+        android:id="@+id/etRowBalance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:hint="Kč"
+        android:inputType="numberDecimal"
+        android:textSize="14sp"/>
+
+    <ImageButton
+        android:id="@+id/btnRemoveRow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@android:drawable/ic_delete"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Odebrat"/>
+</LinearLayout>
