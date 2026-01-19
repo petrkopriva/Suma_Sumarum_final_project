@@ -1,35 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
     android:padding="32dp"
-    android:background="#F5F5F5">
+    android:background="#F2F6FC">
 
     <TextView
         android:id="@+id/tvWelcomeBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Suma Sumárum"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="48dp"
-        android:textColor="#333333"/>
+        android:textSize="34sp"
+        android:fontFamily="sans-serif-black"
+        android:letterSpacing="0.02"
+        android:layout_marginBottom="32dp"
+        android:textColor="#263238"/>
+
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:src="@drawable/ic_logo_wallet"
+        android:layout_marginBottom="80dp"
+        app:tint="#1565C0"
+        android:contentDescription="Logo" />
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="65dp"
         android:text="Přihlásit se"
+        android:textSize="18sp"
         android:visibility="gone"
         android:layout_marginBottom="16dp"/>
 
     <Button
         android:id="@+id/btnCreateNew"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:text="Vytvořit nový účet"/>
+        android:layout_height="70dp"
+        android:text="Vytvořit nový účet"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:backgroundTint="#1565C0"
+        app:cornerRadius="35dp"
+        app:elevation="8dp"
+        android:stateListAnimator="@null"/>
 
 </LinearLayout>

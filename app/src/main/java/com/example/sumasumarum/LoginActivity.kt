@@ -23,10 +23,10 @@ class LoginActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences("SumaPrefs", Context.MODE_PRIVATE)
         val savedUsers = sharedPref.getString("ALL_USERS", "") ?: ""
 
-        // --- OPRAVA: Filtrujeme prázdné znaky, aby seznam byl opravdu čistý ---
+
         val userList = savedUsers.split(",").filter { it.isNotBlank() }
 
-        // --- DIAGNOSTIKA: Tohle ti řekne, co telefon vidí ---
+
         if (userList.isNotEmpty()) {
             Toast.makeText(this, "Nalezeno: $userList", Toast.LENGTH_LONG).show()
 
@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
             binding.btnLogin.setOnClickListener { showUserSelectionDialog(userList) }
 
             // Upravíme text nadpisu
-            binding.tvWelcomeBack.text = "Vítejte zpět"
+            binding.tvWelcomeBack.text = "Suma Sumárum"
         } else {
             Toast.makeText(this, "Zatím žádný uživatel", Toast.LENGTH_SHORT).show()
             binding.btnLogin.visibility = View.GONE
@@ -124,10 +124,10 @@ class LoginActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences("SumaPrefs", Context.MODE_PRIVATE)
         val users = sharedPref.getString("ALL_USERS", "") ?: ""
 
-        // Jednoduché přidání s čárkou
+
         val newUsers = if (users.isEmpty()) name else "$users,$name"
 
-        // DŮLEŽITÉ: Používáme commit() pro okamžitý zápis
+
         sharedPref.edit()
             .putString("ALL_USERS", newUsers)
             .putString("PASS_$name", pass)
