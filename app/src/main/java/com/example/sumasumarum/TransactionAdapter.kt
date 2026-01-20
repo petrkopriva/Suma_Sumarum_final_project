@@ -8,7 +8,7 @@ import com.example.sumasumarum.databinding.ItemTransactionBinding
 
 class TransactionAdapter(
     private var transactions: List<Transaction>,
-    private val onItemClick: (Transaction) -> Unit // Funkce pro kliknutí
+    private val onItemClick: (Transaction) -> Unit
 ) : RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>() {
 
     class TransactionViewHolder(val binding: ItemTransactionBinding) : RecyclerView.ViewHolder(binding.root)

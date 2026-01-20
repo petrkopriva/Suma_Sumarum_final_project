@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sumasumarum.databinding.FragmentDashboardBinding
 import com.example.sumasumarum.databinding.ItemInvestmentBinding
-import kotlinx.coroutines.coroutineScope // DŮLEŽITÝ IMPORT
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar

@@ -5,7 +5,7 @@ import java.util.Locale
 
 object CurrencyUtils {
     private val formatter = NumberFormat.getNumberInstance(Locale("cs", "CZ")).apply {
-        maximumFractionDigits = 0 // Bez desetinných míst pro přehlednost
+        maximumFractionDigits = 0
     }
 
     fun format(amount: Double): String {

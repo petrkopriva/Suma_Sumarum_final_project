@@ -15,11 +15,11 @@ abstract class AppDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: AppDatabase? = null
 
-        // Metoda nyní přijímá jméno uživatele, aby vytvořila unikátní soubor
+
         fun getDatabase(context: Context, username: String = "default_user"): AppDatabase {
             val dbName = "suma_database_$username" // Např. suma_database_Petr
 
-            // Pokud se přihlašuje jiný uživatel, resetujeme instanci
+
             if (INSTANCE?.openHelper?.databaseName != dbName) {
                 INSTANCE = null
             }

@@ -24,12 +24,12 @@ interface TransactionDao {
     @Query("SELECT * FROM transactions WHERE id = :id")
     suspend fun getTransactionById(id: Long): Transaction
 
-    // Historie: Ignorujeme "Počáteční stav", aby to nerušilo
+
     @Query("SELECT * FROM transactions WHERE title != 'Počáteční stav' ORDER BY date DESC")
     fun getAllTransactions(): Flow<List<Transaction>>
 
-    // 1. Zůstatek BANKY / HOTOVOSTI
-    // (Příjmy) - (Výdaje) - (Investice odeslané z tohoto účtu)
+
+
     @Query("""
         SELECT 
         (SELECT COALESCE(SUM(amount), 0) FROM transactions WHERE account = :accountName AND type = 'INCOME') 
@@ -38,8 +38,8 @@ interface TransactionDao {
     """)
     suspend fun getBalanceForBank(accountName: String): Double?
 
-    // 2. Hodnota INVESTICE / NEMOVITOSTI
-    // (Počáteční vklad uložený jako INCOME na tento účet) + (Příhozy uložené jako INVESTMENT do této kategorie)
+
+
     @Query("""
         SELECT 
         (SELECT COALESCE(SUM(amount), 0) FROM transactions WHERE account = :assetName AND type = 'INCOME')

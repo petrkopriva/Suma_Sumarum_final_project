@@ -20,7 +20,7 @@ class HistoryFragment : Fragment() {
     private lateinit var adapter: TransactionAdapter
 
     // Filtry
-    private var allTransactions: List<Transaction> = emptyList() // Všechna data
+    private var allTransactions: List<Transaction> = emptyList()
     private var currentTypeFilter: String? = null
     private var startDate: Long = 0
     private var endDate: Long = Long.MAX_VALUE

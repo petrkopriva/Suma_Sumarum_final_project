@@ -24,11 +24,11 @@ class AddTransactionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddTransactionBinding
     private var selectedImageUri: String? = null
 
-    // Pro Editaci
+
     private var isEditMode = false
     private var transactionId: Long = 0
 
-    // Proměnná pro datum (defaultně teď)
+
     private var transactionTime: Long = System.currentTimeMillis()
 
     private var categoryList = mutableListOf<String>()
@@ -61,10 +61,10 @@ class AddTransactionActivity : AppCompatActivity() {
 
         setupSpinners()
 
-        // Načteme účty
+
         loadAccounts()
 
-        // Defaultně načteme kategorie pro Výdaj
+
         loadCategories("EXPENSE")
 
         binding.btnAddAccount.setOnClickListener { showAddAccountDialog() }
@@ -97,13 +97,13 @@ class AddTransactionActivity : AppCompatActivity() {
 
         binding.btnSave.setOnClickListener { saveTransaction() }
 
-        // --- LOGIKA EDITACE ---
+
         if (intent.hasExtra("TRANS_ID")) {
             isEditMode = true
             transactionId = intent.getLongExtra("TRANS_ID", 0)
             binding.btnSave.text = "Aktualizovat"
 
-            // Načtení dat z databáze
+
             loadTransactionData(transactionId)
         }
     }
@@ -113,19 +113,19 @@ class AddTransactionActivity : AppCompatActivity() {
             val db = (application as SumaApp).database
             val transaction = db.transactionDao().getTransactionById(id)
 
-            // 1. Texty a Datum
+
             binding.etTitle.setText(transaction.title)
             binding.etAmount.setText(transaction.amount.toString())
             transactionTime = transaction.date
 
-            // 2. Typ
+
             when (transaction.type) {
                 "EXPENSE" -> binding.rbExpense.isChecked = true
                 "INCOME" -> binding.rbIncome.isChecked = true
                 "INVESTMENT" -> binding.rbInvestment.isChecked = true
             }
 
-            // 3. Zobrazení fotky (pokud existuje)
+
             if (transaction.imageUri != null) {
                 selectedImageUri = transaction.imageUri
                 binding.ivReceiptPreview.visibility = android.view.View.VISIBLE
@@ -134,7 +134,7 @@ class AddTransactionActivity : AppCompatActivity() {
                     binding.ivReceiptPreview.setImageURI(uri)
                     binding.btnPhoto.text = "Změnit obrázek"
 
-                    // Kliknutí na náhled otevře velký obrázek
+
                     binding.ivReceiptPreview.setOnClickListener {
                         val viewIntent = Intent(Intent.ACTION_VIEW)
                         viewIntent.setDataAndType(uri, "image/*")
@@ -150,7 +150,7 @@ class AddTransactionActivity : AppCompatActivity() {
                 }
             }
 
-            // 4. Nastavení Spinnerů
+
             delay(200)
             setSpinnerValue(binding.spinnerAccount, accountList, transaction.account)
             setSpinnerValue(binding.spinnerCategory, categoryList, transaction.category)
@@ -180,7 +180,7 @@ class AddTransactionActivity : AppCompatActivity() {
             dao.getAllAccounts().collect { accounts ->
                 accountList.clear()
 
-                // FILTR: Zobrazit jen BANK a CASH jako zdroje peněz (pro platby)
+
                 val validAccounts = accounts.filter { it.type == "BANK" || it.type == "CASH" }
 
                 if (validAccounts.isEmpty()) {
@@ -229,7 +229,7 @@ class AddTransactionActivity : AppCompatActivity() {
             inputType = android.text.InputType.TYPE_CLASS_NUMBER or android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL
         }
         val typeSpinner = Spinner(this)
-        val types = listOf("Běžný účet (BANK)", "Hotovost (CASH)") // Zde omezíme jen na zdroje
+        val types = listOf("Běžný účet (BANK)", "Hotovost (CASH)")
         val typeAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, types)
         typeSpinner.adapter = typeAdapter
 
@@ -277,7 +277,7 @@ class AddTransactionActivity : AppCompatActivity() {
         val db = (application as SumaApp).database
         lifecycleScope.launch {
             try {
-                // DB operace na pozadí
+
                 withContext(Dispatchers.IO) {
                     db.investmentDao().insert(InvestmentAccount(name = name, type = type))
                     if (balance > 0) {
@@ -291,9 +291,9 @@ class AddTransactionActivity : AppCompatActivity() {
                         ))
                     }
                 }
-                // UI operace na hlavním vlákně
+
                 Toast.makeText(this@AddTransactionActivity, "Účet vytvořen", Toast.LENGTH_SHORT).show()
-                // loadAccounts() se zavolá automaticky přes flow
+
             } catch (e: Exception) {
                 Toast.makeText(this@AddTransactionActivity, "Chyba: ${e.message}", Toast.LENGTH_SHORT).show()
             }
@@ -311,7 +311,7 @@ class AddTransactionActivity : AppCompatActivity() {
             withContext(Dispatchers.IO) {
                 db.investmentDao().insert(InvestmentAccount(name = name, type = type))
             }
-            // Zde by to chtělo Toast na hlavním vlákně, ale flow to aktualizuje, tak stačí
+
         }
     }
 

@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        // --- Zbytek původního kódu pokračuje zde ---
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

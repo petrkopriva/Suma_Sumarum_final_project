@@ -193,10 +193,10 @@ class NetWorthFragment : Fragment() {
 
                     if (value > 0) {
                         if (sourceAccount != null) {
-                            // SCÉNÁŘ A: Nákup (Přesun z banky)
-                            // Vytvoříme transakci "Nákup: Název".
-                            // Prefix "Nákup:" zajistí, že Dashboard tuto částku ignoruje v měsíční statistice.
-                            // Ale protože je to typ INVESTMENT, DAO ji správně odečte z banky a přičte k majetku.
+
+
+
+
 
                             db.transactionDao().insert(Transaction(
                                 title = "Nákup: $name",
@@ -207,7 +207,7 @@ class NetWorthFragment : Fragment() {
                                 date = System.currentTimeMillis()
                             ))
                         } else {
-                            // SCÉNÁŘ B: Vlastněno (Přírůstek bez placení)
+
                             db.transactionDao().insert(Transaction(
                                 title = "Počáteční stav",
                                 amount = value,
@@ -220,7 +220,7 @@ class NetWorthFragment : Fragment() {
                     }
                 }
 
-                // OPRAVA PÁDU: Bezpečný návrat na hlavní vlákno
+
                 activity?.runOnUiThread {
                     Toast.makeText(context, "Uloženo", Toast.LENGTH_SHORT).show()
                     loadData()

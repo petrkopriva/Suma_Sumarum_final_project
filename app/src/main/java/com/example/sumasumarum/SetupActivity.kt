@@ -47,7 +47,7 @@ class SetupActivity : AppCompatActivity() {
     }
 
     private fun saveAndStart() {
-        // TOTO JE JEN PŘEZDÍVKA (Display Name)
+
         val displayName = binding.etSetupName.text.toString().trim()
 
         if (displayName.isEmpty()) {
@@ -60,18 +60,18 @@ class SetupActivity : AppCompatActivity() {
 
         val sharedPref = getSharedPreferences("SumaPrefs", Context.MODE_PRIVATE)
 
-        // --- OPRAVA: NEVYTVÁŘÍME NOVÉHO UŽIVATELE ---
-        // Zjistíme, kdo je přihlášený (z registrace)
+
+
         val loggedInUser = sharedPref.getString("USER_NAME", null)
 
         if (loggedInUser == null) {
-            // Bezpečnostní pojistka - nemělo by se stát
+
             Toast.makeText(this, "Chyba přihlášení! Vraťte se na start.", Toast.LENGTH_LONG).show()
             finish()
             return
         }
 
-        // Uložíme jen pomocná nastavení, ale NEMĚNÍME "ALL_USERS" ani "USER_NAME"
+
         sharedPref.edit()
             .putString("DISPLAY_NAME", displayName) // Uložíme jako "Přezdívku"
             .putBoolean("IS_SETUP_DONE", true)
